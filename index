@@ -1,0 +1,12 @@
+index.html
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SeilMeister</title>
+  </head>
+  <body>
+    <h1>SeilMeister</h1>
+    <p>Da noch nie ein Meister vom Himmel gefallen ist.</p>
+  </body>
+</html>
