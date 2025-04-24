@@ -1,7 +1,14 @@
 {
-  "firma": "Seilmeister – Industrie & Haus, Kletterservice",
-  "telefon": "+49 123 456789",
+  "firma": "Seilmeister – Industrie- und Höhenzugangstechnik",
+  "ansprechpartner": "Louis Bruns", 
+  "telefon": "+4915906717097",
   "email": "info@seil-meister.de",
-  "adresse": "Ringstraße 38 33814 Altenbeken",
-  "maps": 
+  "adresse": "Ringstraße 38, 33814 Altenbeken, Deutschland",
+  "maps": "https://maps.google.com/?q=Ringstraße+38,+33814+Altenbeken",
+  "web": "https://www.seil-meister.de",
+  "öffnungszeiten": {
+    "montag_bis_freitag": "08:00 – 17:00 Uhr",
+    "samstag": "nach Vereinbarung",
+    "sonntag": "nach Vereinbarung"
+  }
 }
