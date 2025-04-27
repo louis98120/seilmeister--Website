@@ -1,0 +1,14 @@
+{
+  "colors": {
+    "primary": "#0d1b2a",
+    "accent": "#0077cc",
+    "text": "#222222",
+    "background": "#f8f8f8"
+  },
+  "fonts": {
+    "heading": "Bebas Neue, sans-serif",
+    "body": "Inter, sans-serif"
+  },
+  "logo": "/images/logo.png"
+}
+
