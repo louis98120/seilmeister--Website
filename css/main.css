@@ -1,0 +1,734 @@
+/* ==========================================================================
+   Seilmeister - Main Stylesheet v2
+   Fokussiert, übersichtlich, professionell
+   ========================================================================== */
+
+@import url('variables.css');
+@import url('base.css');
+@import url('components.css');
+
+/* ==========================================================================
+   Neue Komponenten – Überarbeitetes Design
+   ========================================================================== */
+
+/* Label / Tag */
+.label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.label--light {
+  color: var(--color-accent-light);
+}
+
+/* Lead Text */
+.lead {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--color-gray-700);
+}
+
+/* Hero Compact - Seil + Meister Branding */
+.hero--compact {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero__content--centered {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Hero Brand - Großes Logo */
+.hero__brand {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.03em;
+}
+
+.hero__brand-seil {
+  color: var(--color-white);
+}
+
+.hero__brand-meister {
+  color: var(--color-accent);
+}
+
+/* Hero Tagline - Seil + Meister Erklärung */
+.hero__tagline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  color: var(--color-gray-300);
+  font-size: var(--font-size-sm);
+}
+
+.hero__tagline-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero__tagline-item strong {
+  color: var(--color-accent);
+}
+
+.hero__tagline-divider {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+}
+
+.hero--compact .hero__title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: var(--space-8);
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+.hero--compact .hero__description {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-8);
+  color: var(--color-gray-300);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .hero__tagline {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hero__tagline-divider {
+    display: none;
+  }
+}
+
+/* Section Highlight */
+.section--highlight {
+  background-color: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+/* Content Block - Zwei Spalten */
+.content-block {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .content-block {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-16);
+  }
+}
+
+.content-block__text h2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-5);
+}
+
+.content-block__text p {
+  color: var(--color-gray-600);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+}
+
+/* Concept Split - Seil + Meister */
+.concept-split {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 480px) {
+  .concept-split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.concept-item {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-gray-200);
+  background: var(--color-white);
+}
+
+.concept-item--accent {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, rgba(200, 164, 92, 0.05) 0%, rgba(200, 164, 92, 0.1) 100%);
+}
+
+.concept-item__label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  background: var(--color-gray-100);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+}
+
+.concept-item--accent .concept-item__label {
+  background: var(--color-accent);
+  color: var(--color-primary-dark);
+}
+
+.concept-item p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+}
+
+.concept-item p strong {
+  color: var(--color-primary);
+}
+
+/* Highlight Box */
+.highlight-box {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+.highlight-box p {
+  color: var(--color-gray-200);
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.highlight-box strong {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Netzwerk-Diagramm - Das "Seil + Meister" Konzept
+   ========================================================================== */
+
+.network-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+/* SVG Verbindungslinien (die "Seile") */
+.network-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.network-line {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0.6;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: draw-line 1.5s ease forwards, pulse-line 3s ease-in-out infinite 1.5s;
+  animation-delay: var(--delay);
+}
+
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.4; stroke-width: 2; }
+  50% { opacity: 0.8; stroke-width: 2.5; }
+}
+
+/* Zentrum - Seilmeister */
+.network-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  box-shadow:
+    0 0 0 4px rgba(200, 164, 92, 0.3),
+    0 8px 32px rgba(26, 43, 60, 0.4);
+  animation: pulse-center 4s ease-in-out infinite;
+}
+
+@keyframes pulse-center {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px rgba(200, 164, 92, 0.3),
+      0 8px 32px rgba(26, 43, 60, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(200, 164, 92, 0.15),
+      0 0 0 16px rgba(200, 164, 92, 0.05),
+      0 8px 48px rgba(26, 43, 60, 0.5);
+  }
+}
+
+.network-center__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+}
+
+.network-center__title span {
+  color: var(--color-accent);
+}
+
+.network-center__sub {
+  font-size: 0.6rem;
+  color: var(--color-gray-300);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* Netzwerk-Knoten (die "Meister") */
+.network-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  padding: 8px 14px;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-200);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+  z-index: 5;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fade-in-node 0.5s ease forwards;
+  animation-delay: calc(0.8s + var(--delay, 0s));
+}
+
+.network-node:nth-child(3) { animation-delay: 0.3s; }
+.network-node:nth-child(4) { animation-delay: 0.5s; }
+.network-node:nth-child(5) { animation-delay: 0.7s; }
+.network-node:nth-child(6) { animation-delay: 0.9s; }
+.network-node:nth-child(7) { animation-delay: 1.1s; }
+.network-node:nth-child(8) { animation-delay: 1.3s; }
+.network-node:nth-child(9) { animation-delay: 1.5s; }
+.network-node:nth-child(10) { animation-delay: 1.7s; }
+
+@keyframes fade-in-node {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.network-node:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 640px) {
+  .network-diagram {
+    max-width: 320px;
+  }
+
+  .network-center {
+    width: 90px;
+    height: 90px;
+  }
+
+  .network-center__title {
+    font-size: 0.8rem;
+  }
+
+  .network-node {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .network-line {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.5;
+  }
+
+  .network-center {
+    animation: none;
+  }
+
+  .network-node {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Service Block */
+.service-block {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-block:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-block--accent {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+.service-block--accent h3,
+.service-block--accent p {
+  color: var(--color-white);
+}
+
+.service-block--accent p {
+  color: var(--color-gray-300);
+}
+
+.service-block__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-4);
+  color: var(--color-accent);
+}
+
+.service-block__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.service-block h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-3);
+}
+
+.service-block p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.service-block__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  background: rgba(200, 164, 92, 0.1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.service-block--accent .service-block__tag {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-accent-light);
+}
+
+/* Network Block */
+.network-block {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .network-block {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}
+
+.network-block__content h2 {
+  color: var(--color-white);
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.network-block__content p {
+  color: var(--color-gray-300);
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+}
+
+/* Check List */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: var(--space-7);
+  margin-bottom: var(--space-3);
+  color: var(--color-gray-200);
+}
+
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Partner Grid */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.partner-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+/* Region Banner */
+.region-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .region-banner {
+    justify-content: space-between;
+  }
+}
+
+.region-banner__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-accent);
+}
+
+.region-banner__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.region-banner__text {
+  color: var(--color-gray-700);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .region-banner__text {
+    text-align: left;
+  }
+}
+
+/* CTA Simple */
+.cta-simple {
+  background: var(--color-gray-900);
+  color: var(--color-white);
+}
+
+.cta-simple__inner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-simple h2 {
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.cta-simple p {
+  color: var(--color-gray-400);
+  margin-bottom: var(--space-6);
+}
+
+/* Footer Simple */
+.footer--simple {
+  background: var(--color-primary-dark);
+  padding: var(--space-10) 0 var(--space-6);
+}
+
+.footer__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .footer__main {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer--simple .footer__brand p {
+  color: var(--color-gray-400);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+}
+
+.footer__contact-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.footer__contact-inline a {
+  color: var(--color-gray-300);
+}
+
+.footer__contact-inline a:hover {
+  color: var(--color-accent);
+}
+
+.footer__contact-inline span {
+  color: var(--color-gray-600);
+}
+
+.footer--simple .footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer--simple .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer--simple .footer__bottom p {
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.footer--simple .footer__legal {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.footer--simple .footer__legal a {
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+}
+
+.footer--simple .footer__legal a:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Bestehende Styles anpassen
+   ========================================================================== */
+
+/* Section Header anpassen */
+.section-header__description strong {
+  color: var(--color-primary);
+}
+
+/* Buttons */
+.btn--sm {
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.75rem;
+}
