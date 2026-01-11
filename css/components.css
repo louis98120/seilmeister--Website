@@ -1113,3 +1113,64 @@
   line-height: var(--line-height-relaxed);
   margin: 0;
 }
+
+/* ==========================================================================
+   Trust Grid - Sicherheit & Qualifikation
+   ========================================================================== */
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .trust-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+.trust-item {
+  text-align: center;
+  padding: var(--space-6);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.trust-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.trust-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-4);
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+.trust-item__icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-white);
+}
+
+.trust-item h3 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.trust-item p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
