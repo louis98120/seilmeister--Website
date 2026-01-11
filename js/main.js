@@ -234,4 +234,64 @@
     img.setAttribute('loading', 'lazy');
   });
 
+  // ==========================================================================
+  // Cookie Consent Banner
+  // ==========================================================================
+
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieAccept = document.getElementById('cookie-accept');
+  const cookieDecline = document.getElementById('cookie-decline');
+
+  // Check if user has already made a choice
+  function getCookieConsent() {
+    return localStorage.getItem('seilmeister-cookie-consent');
+  }
+
+  // Save cookie consent choice
+  function setCookieConsent(value) {
+    localStorage.setItem('seilmeister-cookie-consent', value);
+  }
+
+  // Show/hide banner
+  function showCookieBanner() {
+    if (cookieBanner) {
+      setTimeout(function() {
+        cookieBanner.classList.add('cookie-banner--visible');
+      }, 500);
+    }
+  }
+
+  function hideCookieBanner() {
+    if (cookieBanner) {
+      cookieBanner.classList.remove('cookie-banner--visible');
+    }
+  }
+
+  // Initialize cookie consent
+  if (cookieBanner) {
+    const consent = getCookieConsent();
+
+    if (!consent) {
+      // No choice made yet - show banner
+      showCookieBanner();
+    }
+
+    // Accept button
+    if (cookieAccept) {
+      cookieAccept.addEventListener('click', function() {
+        setCookieConsent('accepted');
+        hideCookieBanner();
+        // Here you could initialize analytics/tracking if needed
+      });
+    }
+
+    // Decline button
+    if (cookieDecline) {
+      cookieDecline.addEventListener('click', function() {
+        setCookieConsent('declined');
+        hideCookieBanner();
+      });
+    }
+  }
+
 })();

@@ -1731,3 +1731,96 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 }
+
+/* ==========================================================================
+   Cookie Consent Banner
+   ========================================================================== */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-modal);
+  background: var(--color-white);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  padding: var(--space-5) var(--space-6);
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.cookie-banner--visible {
+  transform: translateY(0);
+}
+
+.cookie-banner__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .cookie-banner__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+}
+
+.cookie-banner__text {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  line-height: var(--line-height-relaxed);
+}
+
+.cookie-banner__text a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.cookie-banner__text a:hover {
+  color: var(--color-accent-dark);
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.cookie-banner__btn {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.cookie-banner__btn--accept {
+  background: var(--color-accent);
+  color: var(--color-primary-dark);
+  border: 2px solid var(--color-accent);
+}
+
+.cookie-banner__btn--accept:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: var(--color-white);
+}
+
+.cookie-banner__btn--decline {
+  background: transparent;
+  color: var(--color-gray-600);
+  border: 2px solid var(--color-gray-300);
+}
+
+.cookie-banner__btn--decline:hover {
+  border-color: var(--color-gray-500);
+  color: var(--color-gray-800);
+}
