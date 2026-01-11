@@ -3,17 +3,17 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette - Professional, Trust-Building */
-  --color-primary: #1a2b3c;        /* Tiefes Marineblau - Vertrauen & Professionalität */
-  --color-primary-dark: #0f1a26;
-  --color-primary-light: #2a3f54;
+  /* Color Palette - Industrial, Climbing Work */
+  --color-primary: #1C1C1C;        /* Anthrazit - Industriell & Professionell */
+  --color-primary-dark: #121212;
+  --color-primary-light: #2D2D2D;
 
-  --color-accent: #c8a45c;         /* Gedämpftes Gold - Qualität & Kompetenz */
-  --color-accent-dark: #a88a42;
-  --color-accent-light: #d4b87a;
+  --color-accent: #FF6B35;         /* Safety Orange - Sichtbarkeit & Industrie */
+  --color-accent-dark: #E55A2B;
+  --color-accent-light: #FF8C5A;
 
-  --color-secondary: #4a5d6f;      /* Stahlgrau-Blau */
-  --color-secondary-light: #6b7d8e;
+  --color-secondary: #4A4A4A;      /* Stahlgrau */
+  --color-secondary-light: #6B6B6B;
 
   /* Neutral Colors */
   --color-white: #ffffff;
