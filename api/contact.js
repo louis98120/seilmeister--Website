@@ -41,8 +41,8 @@ module.exports = async function handler(req, res) {
 
     // Email content
     const mailOptions = {
-      from: `"Seilmeister Website" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      from: `"Seilmeister Website" <kontakt1@seil-meister.de>`,
+      to: 'kontakt1@seil-meister.de',
       replyTo: email,
       subject: `Kontaktanfrage: ${subjectText}`,
       html: `
