@@ -98,6 +98,10 @@ Diese E-Mail wurde über das Kontaktformular auf seil-meister.de gesendet.
 
   } catch (error) {
     console.error('Email error:', error);
-    return res.status(500).json({ error: 'E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.' });
+    return res.status(500).json({
+      error: 'E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.',
+      debug: error.message,
+      code: error.code
+    });
   }
 };
