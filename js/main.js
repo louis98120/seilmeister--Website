@@ -161,10 +161,52 @@
         return;
       }
 
-      // Form is valid - in production, this would submit to a server
-      // For now, show success message
-      alert('Vielen Dank für Ihre Nachricht!\n\nWir werden uns zeitnah bei Ihnen melden.');
-      contactForm.reset();
+      // Get submit button and disable it
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet...';
+
+      // Collect form data
+      const formData = {
+        name: name.value.trim(),
+        company: document.getElementById('company').value.trim(),
+        email: email.value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        subject: subject.value,
+        message: message.value.trim()
+      };
+
+      // Send to API
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(function(response) {
+        return response.json().then(function(data) {
+          if (!response.ok) {
+            throw new Error(data.error || 'Ein Fehler ist aufgetreten.');
+          }
+          return data;
+        });
+      })
+      .then(function(data) {
+        // Success
+        alert('Vielen Dank für Ihre Nachricht!\n\nWir werden uns zeitnah bei Ihnen melden.');
+        contactForm.reset();
+      })
+      .catch(function(error) {
+        // Error
+        alert('Fehler: ' + error.message + '\n\nBitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.');
+      })
+      .finally(function() {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      });
     });
   }
 
