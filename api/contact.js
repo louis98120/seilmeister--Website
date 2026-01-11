@@ -12,10 +12,10 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   try {
-    const { name, company, email, phone, subject, message } = req.body;
+    const { name, email, message } = req.body;
 
     // Validate required fields
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !message) {
       return res.status(400).json({ error: 'Bitte füllen Sie alle Pflichtfelder aus.' });
     }
 
@@ -30,21 +30,12 @@ module.exports = async function handler(req, res) {
       }
     });
 
-    // Map subject values to readable text
-    const subjectMap = {
-      'anfrage': 'Projektanfrage',
-      'angebot': 'Angebotsanfrage',
-      'kooperation': 'Kooperationsanfrage',
-      'sonstiges': 'Sonstiges'
-    };
-    const subjectText = subjectMap[subject] || subject;
-
     // Email content
     const mailOptions = {
       from: `"Seilmeister Website" <kontakt1@seil-meister.de>`,
       to: 'info@seil-meister.de',
       replyTo: email,
-      subject: `Kontaktanfrage: ${subjectText}`,
+      subject: `Kontaktanfrage von ${name}`,
       html: `
         <h2>Neue Kontaktanfrage über die Website</h2>
         <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
@@ -53,20 +44,8 @@ module.exports = async function handler(req, res) {
             <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
           </tr>
           <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Unternehmen:</td>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">${company || '-'}</td>
-          </tr>
-          <tr>
             <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">E-Mail:</td>
             <td style="padding: 10px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Telefon:</td>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">${phone || '-'}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Betreff:</td>
-            <td style="padding: 10px; border-bottom: 1px solid #eee;">${subjectText}</td>
           </tr>
         </table>
         <h3 style="margin-top: 20px;">Nachricht:</h3>
@@ -78,10 +57,7 @@ module.exports = async function handler(req, res) {
 Neue Kontaktanfrage über die Website
 
 Name: ${name}
-Unternehmen: ${company || '-'}
 E-Mail: ${email}
-Telefon: ${phone || '-'}
-Betreff: ${subjectText}
 
 Nachricht:
 ${message}
