@@ -33,9 +33,14 @@
       <nav class="nav" aria-label="Hauptnavigation">
         <ul class="nav__list">
           <li><a href="index.html" class="nav__link">Start</a></li>
-          <li><a href="leistungen.html" class="nav__link nav__link--active">Leistungen</a></li>
+          <li class="nav__item nav__item--has-dropdown">
+            <a href="leistungen.html" class="nav__link nav__link--active">Leistungen</a>
+            <ul class="nav__dropdown">
+              <li><a href="leistungen.html" class="nav__dropdown-link">Alle Leistungen</a></li>
+              <li><a href="baumpflege.html" class="nav__dropdown-link">Baumpflege</a></li>
+            </ul>
+          </li>
           <li><a href="kooperationen.html" class="nav__link">Partnernetzwerk</a></li>
-          <li><a href="ki-automatisierung.html" class="nav__link">KI für Handwerker</a></li>
           <li><a href="kontakt.html" class="btn btn--primary btn--sm">Kontakt</a></li>
         </ul>
       </nav>
@@ -50,9 +55,13 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item"><a href="index.html" class="mobile-nav__link">Start</a></li>
-        <li class="mobile-nav__item"><a href="leistungen.html" class="mobile-nav__link mobile-nav__link--active">Leistungen</a></li>
+        <li class="mobile-nav__item">
+          <a href="leistungen.html" class="mobile-nav__link mobile-nav__link--active">Leistungen</a>
+          <ul class="mobile-nav__sublist">
+            <li><a href="baumpflege.html" class="mobile-nav__sublink">Baumpflege</a></li>
+          </ul>
+        </li>
         <li class="mobile-nav__item"><a href="kooperationen.html" class="mobile-nav__link">Partnernetzwerk</a></li>
-        <li class="mobile-nav__item"><a href="ki-automatisierung.html" class="mobile-nav__link">KI für Handwerker</a></li>
         <li class="mobile-nav__item"><a href="kontakt.html" class="mobile-nav__link">Kontakt</a></li>
       </ul>
     </nav>
@@ -147,14 +156,10 @@
           <div class="service-detail__content">
             <h2 id="baumpflege-title">Baumpflege & Fällarbeiten</h2>
             <p>
-              Baumpflege und Fällungen nach ZTV-Baumpflege – auch an schwer
-              zugänglichen Stellen. Per Seilklettertechnik, schonend und sicher.
+              Professionelle Baumpflege per Seilklettertechnik – von der Kronenpflege
+              bis zur Fällung auf engstem Raum. Sicher, schonend und nach ZTV-Baumpflege.
             </p>
-            <ul class="service-detail__list">
-              <li>Kroneneinkürzungen zur Erhaltung der Verkehrssicherheit</li>
-              <li>Entfernung von Totholz zur Vorbeugung von Schäden</li>
-              <li>Pflege und Fällung von Einzelbäumen und Baumgruppen in sensiblen Bereichen</li>
-            </ul>
+            <a href="baumpflege.html" class="btn btn--outline" style="margin-top: var(--space-4);">Mehr erfahren</a>
           </div>
           <div class="service-detail__image">
             <img src="assets/images/baumpflege-kronenschnitt.png" alt="Zertifizierter Seilkletterer bei fachgerechter Kronenpflege nach ZTV-Baumpflege-Richtlinien" loading="lazy">
@@ -308,7 +313,7 @@
             <li><a href="leistungen.html#zugangstechnik" class="footer__link">Zugangstechnik</a></li>
             <li><a href="leistungen.html#montage" class="footer__link">Montage & Demontage</a></li>
             <li><a href="leistungen.html#reinigung" class="footer__link">Reinigung & Wartung</a></li>
-            <li><a href="leistungen.html#baumpflege" class="footer__link">Baumpflege</a></li>
+            <li><a href="baumpflege.html" class="footer__link">Baumpflege</a></li>
             <li><a href="leistungen.html#fremdsicherung" class="footer__link">Fremdsicherung</a></li>
           </ul>
         </div>
