@@ -502,6 +502,91 @@
   color: var(--color-accent-light);
 }
 
+/* Service Block - Link Variant */
+.service-block--link {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.service-block--link:hover {
+  transform: translateY(-4px);
+}
+
+/* Service Block - Large Variant */
+.service-block--large {
+  padding: var(--space-10);
+}
+
+.service-block--large .service-block__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--space-5);
+}
+
+.service-block__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.service-block--accent .service-block__subtitle {
+  color: var(--color-accent-light);
+}
+
+.service-block__list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0;
+  font-size: var(--font-size-sm);
+}
+
+.service-block__list li {
+  padding: var(--space-2) 0;
+  padding-left: var(--space-5);
+  position: relative;
+  color: var(--color-gray-600);
+}
+
+.service-block--accent .service-block__list li {
+  color: var(--color-gray-300);
+}
+
+.service-block__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.service-block__cta {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: var(--space-4);
+}
+
+.service-block--link:hover .service-block__cta {
+  text-decoration: underline;
+}
+
+/* Services Grid - Two Column */
+.services-grid--two {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .services-grid--two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Network Block */
 .network-block {
   display: grid;
@@ -870,4 +955,985 @@
 /* Adjust for cookie banner */
 .floating-cta.cookie-visible {
   bottom: 140px;
+}
+
+/* ==========================================================================
+   Leistungen Akkordeon - Industrieleistungen Page
+   ========================================================================== */
+
+.leistungen-akkordeon {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Kategorie Container */
+.leistung-kategorie {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.leistung-kategorie:hover {
+  border-color: var(--color-gray-300);
+}
+
+.leistung-kategorie[open] {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+
+/* Header / Summary */
+.leistung-kategorie__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: background-color var(--transition-fast);
+}
+
+.leistung-kategorie__header::-webkit-details-marker {
+  display: none;
+}
+
+.leistung-kategorie__header:hover {
+  background-color: var(--color-gray-50);
+}
+
+.leistung-kategorie[open] .leistung-kategorie__header {
+  background-color: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.leistung-kategorie__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.leistung-kategorie__icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.leistung-kategorie__count {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-500);
+  background: var(--color-gray-100);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.leistung-kategorie[open] .leistung-kategorie__count {
+  background: var(--color-accent);
+  color: var(--color-primary-dark);
+}
+
+/* Content */
+.leistung-kategorie__content {
+  padding: var(--space-5) var(--space-6);
+}
+
+/* Leistungen Liste */
+.leistung-liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.leistung-item {
+  padding: var(--space-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-accent);
+  transition: background-color var(--transition-fast);
+}
+
+.leistung-item:hover {
+  background: var(--color-gray-100);
+}
+
+.leistung-item strong {
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.leistung-item p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.leistung-item a {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.leistung-item a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 640px) {
+  .leistung-kategorie__header {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .leistung-kategorie__title {
+    font-size: var(--font-size-base);
+    gap: var(--space-2);
+  }
+
+  .leistung-kategorie__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .leistung-kategorie__count {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .leistung-kategorie__content {
+    padding: var(--space-4);
+  }
+
+  .leistung-item {
+    padding: var(--space-3);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .leistung-kategorie,
+  .leistung-kategorie__header,
+  .leistung-kategorie__count,
+  .leistung-item {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Leistungen Teaser - Link to full list
+   ========================================================================== */
+
+.leistungen-teaser {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.leistungen-teaser:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.leistungen-teaser__content h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+.leistungen-teaser__content p {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .leistungen-teaser {
+    padding: var(--space-6);
+  }
+
+  .leistungen-teaser__content h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .leistungen-teaser__content p {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ==========================================================================
+   How It Works - Prozess-Darstellung
+   ========================================================================== */
+
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  margin: var(--space-10) 0;
+}
+
+@media (min-width: 768px) {
+  .how-it-works {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+}
+
+.how-it-works__step {
+  text-align: center;
+  max-width: 280px;
+  padding: var(--space-6);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+.how-it-works__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-primary);
+  border-radius: 50%;
+  color: var(--color-accent);
+}
+
+.how-it-works__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.how-it-works__step h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.how-it-works__step p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.how-it-works__arrow {
+  display: none;
+  width: 40px;
+  height: 40px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.how-it-works__arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .how-it-works__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-10);
+  }
+}
+
+/* ==========================================================================
+   Benefits Bar - Vorteile auf einen Blick
+   ========================================================================== */
+
+.benefits-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-10);
+}
+
+.benefits-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+}
+
+.benefits-bar__icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.benefits-bar__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.benefits-bar__item strong {
+  color: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .benefits-bar {
+    gap: var(--space-10);
+  }
+
+  .benefits-bar__item {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ==========================================================================
+   Service Cards - Leistungsbereiche mit Bild
+   ========================================================================== */
+
+.service-card {
+  display: block;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.service-card__image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.service-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.service-card:hover .service-card__image img {
+  transform: scale(1.05);
+}
+
+.service-card__content {
+  padding: var(--space-6);
+}
+
+.service-card__label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.service-card h3 {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.service-card p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+.service-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.service-card__list li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.service-card__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.service-card__cta {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.service-card:hover .service-card__cta {
+  text-decoration: underline;
+}
+
+/* Service Card Accent Variant */
+.service-card--accent {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.service-card--accent .service-card__label {
+  color: var(--color-accent-light);
+}
+
+.service-card--accent h3 {
+  color: var(--color-white);
+}
+
+.service-card--accent p {
+  color: var(--color-gray-300);
+}
+
+.service-card--accent .service-card__list li {
+  color: var(--color-gray-300);
+}
+
+.service-card--accent .service-card__cta {
+  color: var(--color-accent-light);
+}
+
+/* ==========================================================================
+   Trust Compact - Vertrauenssignale kompakt
+   ========================================================================== */
+
+.trust-compact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .trust-compact {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+.trust-compact__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.trust-compact__icon {
+  width: 40px;
+  height: 40px;
+  padding: var(--space-2);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.trust-compact__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.trust-compact__item strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+
+.trust-compact__item p {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Section Variant - Small Padding */
+.section--sm {
+  padding: var(--space-10) 0;
+}
+
+/* ==========================================================================
+   Target Audience - Für wen ist das?
+   ========================================================================== */
+
+.target-audience {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .target-audience {
+    grid-template-columns: 1fr;
+  }
+}
+
+.target-audience__item {
+  padding: var(--space-5);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-accent);
+}
+
+.target-audience__item h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.target-audience__item p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Service Detail Card - Leistungen mit Bild
+   ========================================================================== */
+
+.service-detail-card {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-12);
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 768px) {
+  .service-detail-card {
+    grid-template-columns: 1fr 1.2fr;
+  }
+
+  .service-detail-card--reverse {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .service-detail-card--reverse .service-detail-card__image {
+    order: 2;
+  }
+
+  .service-detail-card--reverse .service-detail-card__content {
+    order: 1;
+  }
+}
+
+.service-detail-card__image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.service-detail-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-detail-card__content {
+  padding: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .service-detail-card__content {
+    padding: var(--space-8);
+  }
+}
+
+.service-detail-card__content h3 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.service-detail-card__lead {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin-bottom: var(--space-5);
+}
+
+.service-detail-card__examples h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+  margin-bottom: var(--space-3);
+}
+
+.service-detail-card__examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+}
+
+.service-detail-card__examples li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  line-height: 1.5;
+}
+
+.service-detail-card__examples li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.service-detail-card__examples li strong {
+  color: var(--color-primary);
+}
+
+.service-detail-card__benefit {
+  padding: var(--space-4);
+  background: linear-gradient(135deg, rgba(200, 164, 92, 0.1) 0%, rgba(200, 164, 92, 0.05) 100%);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+}
+
+.service-detail-card__benefit strong {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Comparison Grid - Vergleich Gerüst vs. Seilzugang
+   ========================================================================== */
+
+.comparison-grid {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .comparison-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.comparison-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.comparison-card--highlight {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-accent);
+}
+
+.comparison-card__header {
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.comparison-card__header h3 {
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  margin: 0;
+}
+
+.comparison-card__header--negative {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.comparison-card__header--positive {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+.comparison-card__list {
+  list-style: none;
+  padding: var(--space-5);
+  margin: 0;
+}
+
+.comparison-card__list li {
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-3);
+  color: var(--color-gray-200);
+  font-size: var(--font-size-sm);
+}
+
+.comparison-card__list li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.comparison-card--highlight .comparison-card__list li::before {
+  content: "✓";
+  color: #22c55e;
+}
+
+/* ==========================================================================
+   Safety Points - Sicherheits-Punkte
+   ========================================================================== */
+
+.safety-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .safety-points {
+    grid-template-columns: 1fr;
+  }
+}
+
+.safety-point {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.safety-point__icon {
+  width: 48px;
+  height: 48px;
+  padding: var(--space-3);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.safety-point__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.safety-point h3 {
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+
+.safety-point p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   All Services Teaser - Link zur vollständigen Liste
+   ========================================================================== */
+
+.all-services-teaser {
+  text-align: center;
+  padding: var(--space-10);
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.all-services-teaser h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.all-services-teaser p {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-6);
+}
+
+/* ==========================================================================
+   Breadcrumb - Light variant for dark backgrounds
+   ========================================================================== */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
+}
+
+.breadcrumb a {
+  color: var(--color-gray-500);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb span {
+  color: var(--color-gray-400);
+}
+
+.breadcrumb--light a {
+  color: var(--color-gray-400);
+}
+
+.breadcrumb--light a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb--light span {
+  color: var(--color-gray-500);
+}
+
+/* ==========================================================================
+   Image Gallery
+   ========================================================================== */
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-item {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item--wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+  .gallery-item--wide {
+    grid-column: span 1;
+  }
+}
+
+/* ==========================================================================
+   FAQ Grid
+   ========================================================================== */
+
+.faq-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.faq-item[open] {
+  border-color: var(--color-accent);
+}
+
+.faq-item__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__question::after {
+  content: "+";
+  font-size: var(--font-size-xl);
+  color: var(--color-accent);
+  font-weight: 300;
+}
+
+.faq-item[open] .faq-item__question::after {
+  content: "−";
+}
+
+.faq-item__answer {
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.faq-item__answer p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.7;
+  margin: 0;
 }

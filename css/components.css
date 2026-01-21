@@ -370,14 +370,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .hero__content {
@@ -1806,14 +1806,16 @@
 
 .cookie-banner {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  left: auto;
+  max-width: 380px;
   z-index: var(--z-modal);
   background: var(--color-white);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  padding: var(--space-5) var(--space-6);
-  transform: translateY(100%);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  transform: translateY(150%);
   transition: transform var(--transition-base);
 }
 
@@ -1822,19 +1824,17 @@
 }
 
 .cookie-banner__inner {
-  max-width: var(--container-max);
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
-@media (min-width: 768px) {
-  .cookie-banner__inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-8);
+@media (max-width: 480px) {
+  .cookie-banner {
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
+    bottom: var(--space-3);
   }
 }
 
@@ -1861,8 +1861,8 @@
 }
 
 .cookie-banner__btn {
-  padding: var(--space-3) var(--space-5);
-  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   border-radius: var(--radius-sm);
   cursor: pointer;
