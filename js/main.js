@@ -1,10 +1,28 @@
 /**
  * Seilmeister - Main JavaScript
  * Professional Industrial Climbing & Height Access Services
+ *
+ * STRUKTUR:
+ * 1. Header Scroll Effect
+ * 2. Mobile Navigation
+ * 3. Smooth Scroll
+ * 4. Contact Form Validation
+ * 5. Intersection Observer (Animations)
+ * 6. Lazy Loading
+ * 7. Cookie Consent
  */
 
 (function() {
   'use strict';
+
+  // ==========================================================================
+  // Configuration (use SITE_CONFIG if available)
+  // ==========================================================================
+
+  const config = typeof SITE_CONFIG !== 'undefined' ? SITE_CONFIG : {
+    api: { contact: '/api/contact' },
+    cookies: { storageKey: 'seilmeister-cookie-consent', bannerDelay: 500 }
+  };
 
   // ==========================================================================
   // Header Scroll Effect
@@ -13,6 +31,7 @@
   const header = document.getElementById('header');
 
   function handleScroll() {
+    if (!header) return;
     if (window.scrollY > 50) {
       header.classList.add('header--scrolled');
     } else {
@@ -30,43 +49,39 @@
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
 
+  function closeMobileNav() {
+    if (!mobileNav || !menuToggle) return;
+    mobileNav.classList.remove('mobile-nav--open');
+    menuToggle.classList.remove('menu-toggle--active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Menü öffnen');
+    document.body.style.overflow = '';
+  }
+
+  function openMobileNav() {
+    if (!mobileNav || !menuToggle) return;
+    mobileNav.classList.add('mobile-nav--open');
+    menuToggle.classList.add('menu-toggle--active');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Menü schließen');
+    document.body.style.overflow = 'hidden';
+  }
+
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', function() {
       const isOpen = mobileNav.classList.contains('mobile-nav--open');
-
-      if (isOpen) {
-        mobileNav.classList.remove('mobile-nav--open');
-        menuToggle.classList.remove('menu-toggle--active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Menü öffnen');
-        document.body.style.overflow = '';
-      } else {
-        mobileNav.classList.add('mobile-nav--open');
-        menuToggle.classList.add('menu-toggle--active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        menuToggle.setAttribute('aria-label', 'Menü schließen');
-        document.body.style.overflow = 'hidden';
-      }
+      isOpen ? closeMobileNav() : openMobileNav();
     });
 
     // Close menu on link click
-    const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav__link');
-    mobileNavLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        mobileNav.classList.remove('mobile-nav--open');
-        menuToggle.classList.remove('menu-toggle--active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+    mobileNav.querySelectorAll('.mobile-nav__link').forEach(function(link) {
+      link.addEventListener('click', closeMobileNav);
     });
 
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && mobileNav.classList.contains('mobile-nav--open')) {
-        mobileNav.classList.remove('mobile-nav--open');
-        menuToggle.classList.remove('menu-toggle--active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        closeMobileNav();
         menuToggle.focus();
       }
     });
@@ -105,80 +120,95 @@
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Get form fields
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const subject = document.getElementById('subject');
-      const message = document.getElementById('message');
-      const privacy = document.getElementById('privacy');
+      // Get form fields (only if they exist)
+      const nameField = document.getElementById('name');
+      const emailField = document.getElementById('email');
+      const messageField = document.getElementById('message');
+      const privacyField = document.getElementById('privacy');
+
+      // Optional fields
+      const subjectField = document.getElementById('subject');
+      const companyField = document.getElementById('company');
+      const phoneField = document.getElementById('phone');
 
       let isValid = true;
       const errors = [];
 
       // Reset previous error states
-      const inputs = contactForm.querySelectorAll('.form-input, .form-textarea, .form-select');
-      inputs.forEach(function(input) {
+      contactForm.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(function(input) {
+        input.classList.remove('form-input--error');
         input.style.borderColor = '';
       });
 
       // Validate name
-      if (!name.value.trim()) {
+      if (nameField && !nameField.value.trim()) {
         isValid = false;
-        name.style.borderColor = 'var(--color-error)';
+        nameField.classList.add('form-input--error');
         errors.push('Bitte geben Sie Ihren Namen ein.');
       }
 
       // Validate email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email.value.trim() || !emailRegex.test(email.value)) {
+      if (emailField && (!emailField.value.trim() || !emailRegex.test(emailField.value))) {
         isValid = false;
-        email.style.borderColor = 'var(--color-error)';
+        emailField.classList.add('form-input--error');
         errors.push('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
       }
 
-      // Validate subject
-      if (!subject.value) {
+      // Validate subject (only if field exists and is required)
+      if (subjectField && subjectField.hasAttribute('required') && !subjectField.value) {
         isValid = false;
-        subject.style.borderColor = 'var(--color-error)';
+        subjectField.classList.add('form-input--error');
         errors.push('Bitte wählen Sie einen Betreff aus.');
       }
 
       // Validate message
-      if (!message.value.trim()) {
+      if (messageField && !messageField.value.trim()) {
         isValid = false;
-        message.style.borderColor = 'var(--color-error)';
+        messageField.classList.add('form-input--error');
         errors.push('Bitte geben Sie eine Nachricht ein.');
       }
 
       // Validate privacy checkbox
-      if (!privacy.checked) {
+      if (privacyField && !privacyField.checked) {
         isValid = false;
         errors.push('Bitte stimmen Sie der Datenschutzerklärung zu.');
       }
 
+      // Show errors inline or via alert
       if (!isValid) {
-        alert('Bitte korrigieren Sie folgende Fehler:\n\n' + errors.join('\n'));
+        showFormErrors(errors);
         return;
       }
 
       // Get submit button and disable it
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Wird gesendet...';
+      const originalBtnText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet...';
+      }
 
       // Collect form data
       const formData = {
-        name: name.value.trim(),
-        company: document.getElementById('company').value.trim(),
-        email: email.value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        subject: subject.value,
-        message: message.value.trim()
+        name: nameField ? nameField.value.trim() : '',
+        email: emailField ? emailField.value.trim() : '',
+        message: messageField ? messageField.value.trim() : ''
       };
 
+      // Add optional fields if they exist and have values
+      if (companyField && companyField.value.trim()) {
+        formData.company = companyField.value.trim();
+      }
+      if (phoneField && phoneField.value.trim()) {
+        formData.phone = phoneField.value.trim();
+      }
+      if (subjectField && subjectField.value) {
+        formData.subject = subjectField.value;
+      }
+
       // Send to API
-      fetch('/api/contact', {
+      fetch(config.api.contact, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -193,78 +223,91 @@
           return data;
         });
       })
-      .then(function(data) {
+      .then(function() {
         // Success
-        alert('Vielen Dank für Ihre Nachricht!\n\nWir werden uns zeitnah bei Ihnen melden.');
+        showFormSuccess('Vielen Dank für Ihre Nachricht! Wir werden uns zeitnah bei Ihnen melden.');
         contactForm.reset();
       })
       .catch(function(error) {
         // Error
-        alert('Fehler: ' + error.message + '\n\nBitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.');
+        showFormErrors(['Fehler beim Senden. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.']);
+        console.error('Form submission error:', error);
       })
       .finally(function() {
         // Re-enable button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
       });
     });
   }
 
-  // ==========================================================================
-  // FAQ Accordion
-  // ==========================================================================
+  // Form feedback helpers
+  function showFormErrors(errors) {
+    const existingAlert = document.querySelector('.form-alert');
+    if (existingAlert) existingAlert.remove();
 
-  const accordionItems = document.querySelectorAll('.accordion__item');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'form-alert form-alert--error';
+    alertDiv.innerHTML = `
+      <strong>Bitte korrigieren Sie folgende Fehler:</strong>
+      <ul>${errors.map(e => `<li>${e}</li>`).join('')}</ul>
+    `;
 
-  accordionItems.forEach(function(item) {
-    const trigger = item.querySelector('.accordion__trigger');
-
-    if (trigger) {
-      trigger.addEventListener('click', function() {
-        const isOpen = item.classList.contains('accordion__item--open');
-
-        // Close all items
-        accordionItems.forEach(function(otherItem) {
-          otherItem.classList.remove('accordion__item--open');
-        });
-
-        // Open clicked item if it was closed
-        if (!isOpen) {
-          item.classList.add('accordion__item--open');
-        }
-      });
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.insertBefore(alertDiv, form.firstChild);
+      alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  });
+  }
+
+  function showFormSuccess(message) {
+    const existingAlert = document.querySelector('.form-alert');
+    if (existingAlert) existingAlert.remove();
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'form-alert form-alert--success';
+    alertDiv.innerHTML = `<p>${message}</p>`;
+
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.insertBefore(alertDiv, form.firstChild);
+      alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 
   // ==========================================================================
   // Intersection Observer for Animations
   // ==========================================================================
 
   if ('IntersectionObserver' in window) {
-    const animateElements = document.querySelectorAll('.card, .service-card, .value-card, .feature');
+    const animateElements = document.querySelectorAll('.card, .service-card, .value-card, .feature, .service-block, .safety-point');
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -50px 0px',
-      threshold: 0.1
-    };
+    if (animateElements.length > 0) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+      };
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      animateElements.forEach(function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
       });
-    }, observerOptions);
-
-    animateElements.forEach(function(el) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
+    }
   }
 
   // ==========================================================================
@@ -283,23 +326,21 @@
   const cookieBanner = document.getElementById('cookie-banner');
   const cookieAccept = document.getElementById('cookie-accept');
   const cookieDecline = document.getElementById('cookie-decline');
+  const storageKey = config.cookies.storageKey;
 
-  // Check if user has already made a choice
   function getCookieConsent() {
-    return localStorage.getItem('seilmeister-cookie-consent');
+    return localStorage.getItem(storageKey);
   }
 
-  // Save cookie consent choice
   function setCookieConsent(value) {
-    localStorage.setItem('seilmeister-cookie-consent', value);
+    localStorage.setItem(storageKey, value);
   }
 
-  // Show/hide banner
   function showCookieBanner() {
     if (cookieBanner) {
       setTimeout(function() {
         cookieBanner.classList.add('cookie-banner--visible');
-      }, 500);
+      }, config.cookies.bannerDelay);
     }
   }
 
@@ -314,20 +355,16 @@
     const consent = getCookieConsent();
 
     if (!consent) {
-      // No choice made yet - show banner
       showCookieBanner();
     }
 
-    // Accept button
     if (cookieAccept) {
       cookieAccept.addEventListener('click', function() {
         setCookieConsent('accepted');
         hideCookieBanner();
-        // Here you could initialize analytics/tracking if needed
       });
     }
 
-    // Decline button
     if (cookieDecline) {
       cookieDecline.addEventListener('click', function() {
         setCookieConsent('declined');

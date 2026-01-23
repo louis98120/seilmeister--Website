@@ -2208,3 +2208,55 @@
   line-height: 1.6;
   margin: 0;
 }
+
+/* ==========================================================================
+   Form Alerts - Inline Feedback
+   ========================================================================== */
+
+.form-alert {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.form-alert--error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.form-alert--error strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: #7f1d1d;
+}
+
+.form-alert--error ul {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.form-alert--error li {
+  margin-bottom: var(--space-1);
+}
+
+.form-alert--success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.form-alert--success p {
+  margin: 0;
+}
+
+.form-input--error {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2;
+}
+
+.form-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
