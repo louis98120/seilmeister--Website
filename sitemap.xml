@@ -16,16 +16,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seil-meister.de/baumpflege.html</loc>
-    <lastmod>2026-02-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://seil-meister.de/kooperationen.html</loc>
-    <lastmod>2026-02-23</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://seil-meister.de/kontakt.html</loc>
     <lastmod>2026-02-23</lastmod>
     <priority>0.7</priority>
@@ -37,11 +27,6 @@
   </url>
   <url>
     <loc>https://seil-meister.de/fisat-zertifizierung.html</loc>
-    <lastmod>2026-02-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://seil-meister.de/digitale-loesungen.html</loc>
     <lastmod>2026-02-23</lastmod>
     <priority>0.6</priority>
   </url>
